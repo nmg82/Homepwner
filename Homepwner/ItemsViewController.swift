@@ -13,12 +13,35 @@ class ItemsViewController: UITableViewController {
     tableView.scrollIndicatorInsets = insets
   }
   
+  override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    return 2
+  }
+  
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return itemStore.allItems.count
+    if section == 0 {
+      return itemStore.allItems.filter({$0.valueInDollars < 50}).count
+    } else {
+      return itemStore.allItems.filter({$0.valueInDollars > 50}).count
+    }
+  }
+  
+  override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    if section == 0 {
+      return "Less than 50"
+    } else {
+      return "Greater than 50"
+    }
   }
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let item = itemStore.allItems[indexPath.row]
+    
+    let item: Item = {
+      if indexPath.section == 0 {
+        return itemStore.allItems.filter({$0.valueInDollars < 50})[indexPath.row]
+      } else {
+        return itemStore.allItems.filter({$0.valueInDollars > 50})[indexPath.row]
+      }
+    }()
     
     let cell = tableView.dequeueReusableCellWithIdentifier("UITableViewCell", forIndexPath: indexPath)
     cell.textLabel?.text = item.name
