@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E42E11F1CCFC5DB00CEFF42 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E42E11E1CCFC5DB00CEFF42 /* DetailViewController.swift */; };
 		1E6A7D9D1CCE9CA700953CAB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6A7D9C1CCE9CA700953CAB /* AppDelegate.swift */; };
 		1E6A7DA21CCE9CA700953CAB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E6A7DA01CCE9CA700953CAB /* Main.storyboard */; };
 		1E6A7DA41CCE9CA700953CAB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E6A7DA31CCE9CA700953CAB /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1E42E11E1CCFC5DB00CEFF42 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		1E6A7D991CCE9CA700953CAB /* Homepwner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Homepwner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E6A7D9C1CCE9CA700953CAB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1E6A7DA11CCE9CA700953CAB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 				1E81EF501CCEA34C0029C2B1 /* ItemStore.swift */,
 				1E81EF521CCECDDE0029C2B1 /* ItemCell.swift */,
 				1E6A7DAE1CCE9DCF00953CAB /* ItemsViewController.swift */,
+				1E42E11E1CCFC5DB00CEFF42 /* DetailViewController.swift */,
 				1E6A7DA01CCE9CA700953CAB /* Main.storyboard */,
 				1E6A7DA31CCE9CA700953CAB /* Assets.xcassets */,
 				1E6A7DA51CCE9CA700953CAB /* LaunchScreen.storyboard */,
@@ -147,6 +150,7 @@
 				1E6A7DAF1CCE9DCF00953CAB /* ItemsViewController.swift in Sources */,
 				1E6A7DB11CCE9EAD00953CAB /* Item.swift in Sources */,
 				1E81EF511CCEA34C0029C2B1 /* ItemStore.swift in Sources */,
+				1E42E11F1CCFC5DB00CEFF42 /* DetailViewController.swift in Sources */,
 				1E6A7D9D1CCE9CA700953CAB /* AppDelegate.swift in Sources */,
 				1E81EF531CCECDDE0029C2B1 /* ItemCell.swift in Sources */,
 			);
