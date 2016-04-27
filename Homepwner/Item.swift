@@ -15,6 +15,11 @@ class Item: NSObject {
     super.init()
   }
   
+  convenience init(name: String, serialNumber: String?, valueInDollars: Int, dateCreated: NSDate) {
+    self.init(name: name, serialNumber: serialNumber, valueInDollars: valueInDollars)
+    self.dateCreated = dateCreated
+  }
+  
   convenience init(random: Bool = false) {
     if random {
       let adjectives = ["Fluffy", "Rusty", "Shiny"]

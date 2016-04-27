@@ -17,6 +17,7 @@
 		1E81EF511CCEA34C0029C2B1 /* ItemStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E81EF501CCEA34C0029C2B1 /* ItemStore.swift */; };
 		1E81EF531CCECDDE0029C2B1 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E81EF521CCECDDE0029C2B1 /* ItemCell.swift */; };
 		1E97B6911CD154380031473C /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E97B6901CD154380031473C /* CustomTextField.swift */; };
+		1E97B6931CD158CE0031473C /* ChangeDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E97B6921CD158CE0031473C /* ChangeDateViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		1E81EF501CCEA34C0029C2B1 /* ItemStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemStore.swift; sourceTree = "<group>"; };
 		1E81EF521CCECDDE0029C2B1 /* ItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		1E97B6901CD154380031473C /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		1E97B6921CD158CE0031473C /* ChangeDateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeDateViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,9 +70,10 @@
 				1E6A7DB01CCE9EAD00953CAB /* Item.swift */,
 				1E81EF501CCEA34C0029C2B1 /* ItemStore.swift */,
 				1E81EF521CCECDDE0029C2B1 /* ItemCell.swift */,
+				1E97B6901CD154380031473C /* CustomTextField.swift */,
 				1E6A7DAE1CCE9DCF00953CAB /* ItemsViewController.swift */,
 				1E42E11E1CCFC5DB00CEFF42 /* DetailViewController.swift */,
-				1E97B6901CD154380031473C /* CustomTextField.swift */,
+				1E97B6921CD158CE0031473C /* ChangeDateViewController.swift */,
 				1E6A7DA01CCE9CA700953CAB /* Main.storyboard */,
 				1E6A7DA31CCE9CA700953CAB /* Assets.xcassets */,
 				1E6A7DA51CCE9CA700953CAB /* LaunchScreen.storyboard */,
@@ -154,6 +157,7 @@
 				1E6A7DAF1CCE9DCF00953CAB /* ItemsViewController.swift in Sources */,
 				1E6A7DB11CCE9EAD00953CAB /* Item.swift in Sources */,
 				1E81EF511CCEA34C0029C2B1 /* ItemStore.swift in Sources */,
+				1E97B6931CD158CE0031473C /* ChangeDateViewController.swift in Sources */,
 				1E42E11F1CCFC5DB00CEFF42 /* DetailViewController.swift in Sources */,
 				1E6A7D9D1CCE9CA700953CAB /* AppDelegate.swift in Sources */,
 				1E81EF531CCECDDE0029C2B1 /* ItemCell.swift in Sources */,
