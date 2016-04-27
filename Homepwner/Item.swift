@@ -5,19 +5,15 @@ class Item: NSObject {
   var valueInDollars: Int
   var serialNumber: String?
   var dateCreated: NSDate
+  var itemKey: String
   
-  init(name: String, serialNumber: String?, valueInDollars: Int) {
+  init(name: String, serialNumber: String?, valueInDollars: Int, dateCreated: NSDate = NSDate()) {
     self.name = name
     self.valueInDollars = valueInDollars
     self.serialNumber = serialNumber
-    self.dateCreated = NSDate()
-    
-    super.init()
-  }
-  
-  convenience init(name: String, serialNumber: String?, valueInDollars: Int, dateCreated: NSDate) {
-    self.init(name: name, serialNumber: serialNumber, valueInDollars: valueInDollars)
     self.dateCreated = dateCreated
+    self.itemKey = NSUUID().UUIDString
+    super.init()
   }
   
   convenience init(random: Bool = false) {
