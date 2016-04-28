@@ -84,6 +84,12 @@ class DetailViewController: UIViewController {
     imagePicker.delegate = self
     imagePicker.allowsEditing = true
     
+    let overlayView = UIImageView(image: UIImage(named: "crosshair"))
+    overlayView.frame = imagePicker.cameraOverlayView!.frame
+    overlayView.contentMode = .Center
+    overlayView.center.y -= 40
+    imagePicker.cameraOverlayView = overlayView
+    
     presentViewController(imagePicker, animated: true, completion: nil)
   }
   
