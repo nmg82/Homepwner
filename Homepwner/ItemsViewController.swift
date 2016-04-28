@@ -1,15 +1,18 @@
 import UIKit
 
 class ItemsViewController: UITableViewController {
+  //MARK: - Properties
   var itemStore: ItemStore!
   var imageStore: ImageStore!
   
+  //MARK: - Initializers
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
     
     navigationItem.leftBarButtonItem = editButtonItem()
   }
   
+  //MARK: - View life cycle
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -17,6 +20,12 @@ class ItemsViewController: UITableViewController {
     tableView.estimatedRowHeight = 65
   }
   
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    tableView.reloadData()
+  }
+  
+  //MARK: - Actions
   @IBAction func addNewItem(sender: AnyObject) {
     let newItem = itemStore.createItem()
     
@@ -26,11 +35,21 @@ class ItemsViewController: UITableViewController {
     }
   }
   
-  override func viewWillAppear(animated: Bool) {
-    super.viewWillAppear(animated)
-    tableView.reloadData()
+  //MARK: - Segues
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if segue.identifier == "ShowItem" {
+      if let row = tableView.indexPathForSelectedRow?.row {
+        let item = itemStore.allItems[row]
+        let detailViewController = segue.destinationViewController as! DetailViewController
+        detailViewController.item = item
+        detailViewController.imageStore = imageStore
+      }
+    }
   }
-  
+}
+
+//MARK: - UITableViewDataSource
+extension ItemsViewController {
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return itemStore.allItems.count + 1
   }
@@ -38,7 +57,7 @@ class ItemsViewController: UITableViewController {
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("ItemCell", forIndexPath: indexPath) as! ItemCell
     cell.updateLabels()
-
+    
     if itemStore.allItems.count == 0 || indexPath.row >= itemStore.allItems.count {
       cell.nameLabel.text = "No more items!"
       cell.serialNumberLabel.text = ""
@@ -53,10 +72,6 @@ class ItemsViewController: UITableViewController {
     }
     
     return cell
-  }
-  
-  override func tableView(tableView: UITableView, titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath) -> String? {
-    return "Remove"
   }
   
   override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -74,19 +89,31 @@ class ItemsViewController: UITableViewController {
         self.imageStore.deleteImageForKey(item.itemKey)
         self.itemStore.removeItem(item)
         self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-      })
+        })
       ac.addAction(deleteAction)
       
       presentViewController(ac, animated: true, completion: nil)
     }
   }
   
+  override func tableView(tableView: UITableView, titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath) -> String? {
+    return "Remove"
+  }
+  
   override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-    return itemStore.allItems.count != 0 && indexPath.row < itemStore.allItems.count
+    return atLeastOneItemExists() && isNotLastItemRow(indexPath.row)
+  }
+  
+  private func atLeastOneItemExists() -> Bool {
+    return !itemStore.allItems.isEmpty
+  }
+  
+  private func isNotLastItemRow(row: Int) -> Bool {
+    return row < itemStore.allItems.count
   }
   
   override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-    return itemStore.allItems.count != 0 && indexPath.row < itemStore.allItems.count
+    return atLeastOneItemExists() && isNotLastItemRow(indexPath.row)
   }
   
   override func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
@@ -94,23 +121,15 @@ class ItemsViewController: UITableViewController {
       itemStore.moveItemAtIndex(sourceIndexPath.row, toIndex: destinationIndexPath.row)
     }
   }
+}
 
+//MARK: - UITableViewDataDelegate
+extension ItemsViewController {
   override func tableView(tableView: UITableView, targetIndexPathForMoveFromRowAtIndexPath sourceIndexPath: NSIndexPath, toProposedIndexPath proposedDestinationIndexPath: NSIndexPath) -> NSIndexPath {
     if proposedDestinationIndexPath.row >= itemStore.allItems.count {
       return NSIndexPath(forRow: itemStore.allItems.count-1, inSection: 0)
     } else {
       return proposedDestinationIndexPath
-    }
-  }
-  
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if segue.identifier == "ShowItem" {
-      if let row = tableView.indexPathForSelectedRow?.row {
-        let item = itemStore.allItems[row]
-        let detailViewController = segue.destinationViewController as! DetailViewController
-        detailViewController.item = item
-        detailViewController.imageStore = imageStore
-      }
     }
   }
 }
