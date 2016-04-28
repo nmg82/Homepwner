@@ -43,6 +43,7 @@ class ItemsViewController: UITableViewController {
       cell.nameLabel.text = "No more items!"
       cell.serialNumberLabel.text = ""
       cell.valueLabel.text = ""
+      cell.userInteractionEnabled = false
     } else {
       let item = itemStore.allItems[indexPath.row]
       cell.nameLabel.text = item.name
