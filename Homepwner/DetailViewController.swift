@@ -6,6 +6,7 @@ class DetailViewController: UIViewController {
   @IBOutlet var valueField: UITextField!
   @IBOutlet var dateLabel: UILabel!
   @IBOutlet var imageView: UIImageView!
+  @IBOutlet var deleteImageButton: UIButton!
   
   var item: Item! {
     didSet {
@@ -38,6 +39,10 @@ class DetailViewController: UIViewController {
     valueField.text = numberFormatter.stringFromNumber(item.valueInDollars)
     dateLabel.text = dateFormatter.stringFromDate(item.dateCreated)
     imageView.image = imageStore.imageForKey(item.itemKey)
+    
+    if imageView.image == nil {
+      toggleDeleteImageButton()
+    }
   }
   
   override func viewWillDisappear(animated: Bool) {
@@ -56,15 +61,15 @@ class DetailViewController: UIViewController {
     item.valueInDollars = value.integerValue
   }
   
-  @IBAction func backgroundTapped(sender: UITapGestureRecognizer) {
-    view.endEditing(true)
-  }
-  
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if segue.identifier == "ChangeDate" {
       let changeDateViewController = segue.destinationViewController as! ChangeDateViewController
       changeDateViewController.item = item
     }
+  }
+  
+  @IBAction func backgroundTapped(sender: UITapGestureRecognizer) {
+    view.endEditing(true)
   }
   
   @IBAction func takePicture(sender: UIBarButtonItem) {
@@ -80,6 +85,22 @@ class DetailViewController: UIViewController {
     imagePicker.allowsEditing = true
     
     presentViewController(imagePicker, animated: true, completion: nil)
+  }
+  
+  @IBAction func deleteImage(sender: UIButton) {
+    let alertController = UIAlertController(title: "Delete Image", message: "Are you sure you want to delete this image?", preferredStyle: .ActionSheet)
+    alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+    alertController.addAction(UIAlertAction(title: "Delete", style: .Destructive, handler: { [unowned self] (_) in
+      self.imageStore.deleteImageForKey(self.item.itemKey)
+      self.imageView.image = nil
+      self.toggleDeleteImageButton()
+    }))
+    
+    presentViewController(alertController, animated: true, completion: nil)
+  }
+  
+  private func toggleDeleteImageButton() {
+    deleteImageButton.hidden = !deleteImageButton.hidden
   }
 }
 
@@ -102,6 +123,7 @@ extension DetailViewController: UIImagePickerControllerDelegate, UINavigationCon
     
     imageStore.setImage(selectedImage, forKey: item.itemKey)
     imageView.image = selectedImage
+    toggleDeleteImageButton()
     
     dismissViewControllerAnimated(true, completion: nil)
   }

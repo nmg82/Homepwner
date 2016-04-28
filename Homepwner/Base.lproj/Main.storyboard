@@ -161,9 +161,16 @@
                                             <segue destination="B2e-nM-PIi" kind="show" identifier="ChangeDate" id="5hU-zN-BdX"/>
                                         </connections>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="249" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="ibe-ce-wEY">
-                                        <rect key="frame" x="0.0" y="181" width="560" height="295"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="ibe-ce-wEY">
+                                        <rect key="frame" x="0.0" y="181" width="560" height="257"/>
                                     </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eEk-LV-eTx">
+                                        <rect key="frame" x="0.0" y="446" width="560" height="30"/>
+                                        <state key="normal" title="Delete Image"/>
+                                        <connections>
+                                            <action selector="deleteImage:" destination="Itr-8K-klY" eventType="touchUpInside" id="B9Q-vr-bU7"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="Upo-qw-b2B" firstAttribute="leading" secondItem="G8q-bV-OaO" secondAttribute="leading" id="Ea9-HT-keB"/>
@@ -201,6 +208,7 @@
                     </view>
                     <connections>
                         <outlet property="dateLabel" destination="vJN-Un-BGh" id="vwU-6f-uAw"/>
+                        <outlet property="deleteImageButton" destination="eEk-LV-eTx" id="bKl-oV-gM4"/>
                         <outlet property="imageView" destination="ibe-ce-wEY" id="P4s-vt-MXM"/>
                         <outlet property="nameField" destination="Cux-hR-E4x" id="NrU-U9-djy"/>
                         <outlet property="serialNumberField" destination="Upo-qw-b2B" id="qzd-1Q-EP2"/>
